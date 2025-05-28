@@ -1,10 +1,10 @@
 import turtle
 
 class GameScreen:
-    def __init__(self, t, width = 600, height = 600, bg_color = 'green'):
+    def __init__(self, t, width = 600, height = 600, startx=1100, starty=200, bg_color = 'green'):
         self.t = t
         self.screen = turtle.Screen()
-        self.screen.setup(width, height)
+        self.screen.setup(width, height, startx, starty)
         self.screen.bgcolor(bg_color)
         self.current_heading = self.t.heading()
 
@@ -36,4 +36,6 @@ class GameScreen:
         self.t.goto(0, 0)
         self.t.pendown()
 
+    def quit_program(self):
+        self.screen.bye()
 
