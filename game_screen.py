@@ -1,7 +1,8 @@
 import turtle
+from constants import bg_color
 
 class GameScreen:
-    def __init__(self, t, width = 600, height = 600, startx=1100, starty=200, bg_color = 'green'):
+    def __init__(self, t, width = 600, height = 600, startx=1100, starty=200, bg_color = bg_color):
         self.t = t
         self.screen = turtle.Screen()
         self.screen.setup(width, height, startx, starty)
@@ -18,24 +19,25 @@ class GameScreen:
         self.t.pendown()
         self.t.setheading(self.current_heading)
 
-    def draw_move_key(self):
+    def init_screen(self):
+        self.t.penup()
+        self.t.goto(-280, 280)
         self.t.write("move to forward : ↑", font=("Arial", 20, "normal"))
         self.move_next_line()
         self.t.write("move to back : ↓", font=("Arial", 20, "normal"))
         self.move_next_line()
-        self.t.write("turn left : ←", font=("Arial", 20, "normal"))
+        self.t.write("move to left : ←", font=("Arial", 20, "normal"))
         self.move_next_line()
-        self.t.write("turn right : →", font=("Arial", 20, "normal"))
-
-    def init_turtle_for_draw_key(self):
-        self.t.penup()
-        self.t.goto(-280, 280)
-
-    def init_turtle_for_playing(self):
+        self.t.write("move to right : →", font=("Arial", 20, "normal"))
         self.t.penup()
         self.t.goto(0, 0)
         self.t.pendown()
 
     def quit_program(self):
         self.screen.bye()
+
+    def reset_game(self):
+        self.t.reset_game()
+        self.init_screen()
+        self.t.auto_move()
 
